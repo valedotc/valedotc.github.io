@@ -39,7 +39,7 @@
           },
           "configurations": {
             "github-pages": {
-              "baseHref": "/portfolio/",
+              "baseHref": "/",
               "budgets": [
                 {
                   "type": "initial",
