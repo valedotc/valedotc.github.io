@@ -1,0 +1,202 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+@use '../../../styles/animations';
+
+.hero {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  overflow: hidden;
+  padding: 6rem 0 4rem;
+
+  // Background dot grid
+  &__grid {
+    position: absolute;
+    inset: 0;
+    background-image:
+      radial-gradient(circle, rgba(255,255,255,0.06) 1px, transparent 1px);
+    background-size: 40px 40px;
+    mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
+    pointer-events: none;
+  }
+
+  // Glow orbs
+  &__orb {
+    position: absolute;
+    border-radius: 50%;
+    pointer-events: none;
+    filter: blur(80px);
+
+    &--1 {
+      width: 500px;
+      height: 500px;
+      background: radial-gradient(circle, rgba(124, 111, 255, 0.2) 0%, transparent 70%);
+      top: -100px;
+      right: -100px;
+      animation: float 8s ease-in-out infinite;
+    }
+
+    &--2 {
+      width: 400px;
+      height: 400px;
+      background: radial-gradient(circle, rgba(0, 212, 255, 0.12) 0%, transparent 70%);
+      bottom: 0;
+      left: -100px;
+      animation: float 10s ease-in-out infinite reverse;
+    }
+  }
+
+  &__content {
+    position: relative;
+    z-index: 1;
+    max-width: 720px;
+    animation: fadeInUp 0.8s ease both;
+  }
+
+  &__badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    padding: 0.375rem 1rem;
+    background: rgba(0, 212, 255, 0.08);
+    border: 1px solid rgba(0, 212, 255, 0.2);
+    border-radius: $radius-full;
+    font-size: $fs-xs;
+    font-family: $font-mono;
+    color: $accent-cyan;
+    margin-bottom: 1.5rem;
+    animation: fadeInUp 0.8s ease 0.1s both;
+
+    .badge-dot {
+      width: 7px;
+      height: 7px;
+      background: $accent-cyan;
+      border-radius: 50%;
+      box-shadow: 0 0 8px $accent-cyan;
+      animation: pulse-glow 2s ease-in-out infinite;
+    }
+  }
+
+  &__name {
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    font-weight: 800;
+    line-height: 1.08;
+    letter-spacing: -0.03em;
+    @include gradient-text;
+    margin-bottom: 1rem;
+    animation: fadeInUp 0.8s ease 0.2s both;
+  }
+
+  &__role {
+    font-size: clamp($fs-xl, 3vw, $fs-2xl);
+    font-weight: 600;
+    color: $text-secondary;
+    margin-bottom: 1.5rem;
+    min-height: 2em;
+    animation: fadeInUp 0.8s ease 0.3s both;
+
+    .role-text {
+      color: $text-primary;
+    }
+
+    .cursor {
+      color: $accent;
+      animation: blink 1s step-end infinite;
+      margin-left: 1px;
+    }
+  }
+
+  &__subtitle {
+    font-size: $fs-lg;
+    color: $text-secondary;
+    line-height: 1.7;
+    max-width: 580px;
+    margin-bottom: 2.5rem;
+    animation: fadeInUp 0.8s ease 0.4s both;
+  }
+
+  &__actions {
+    display: flex;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin-bottom: 2.5rem;
+    animation: fadeInUp 0.8s ease 0.5s both;
+  }
+
+  &__socials {
+    display: flex;
+    gap: 0.75rem;
+    animation: fadeInUp 0.8s ease 0.6s both;
+  }
+
+  &__scroll {
+    position: absolute;
+    bottom: 2.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 0.5rem;
+    cursor: pointer;
+    color: $text-muted;
+    font-size: $fs-xs;
+    font-family: $font-mono;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    transition: color $transition-fast;
+    animation: fadeIn 1s ease 1.2s both;
+
+    &:hover {
+      color: $accent;
+      .scroll-line { background: $accent; }
+    }
+
+    .scroll-line {
+      width: 1px;
+      height: 48px;
+      background: $text-muted;
+      border-radius: 1px;
+      position: relative;
+      overflow: hidden;
+      transition: background $transition-fast;
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: -100%;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: $accent;
+        animation: shimmer-line 1.5s ease-in-out infinite;
+      }
+    }
+  }
+}
+
+.social-link {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 42px;
+  height: 42px;
+  color: $text-secondary;
+  border: 1px solid $border;
+  border-radius: $radius-md;
+  background: rgba(255, 255, 255, 0.03);
+  transition: color $transition-fast, border-color $transition-fast, background $transition-fast, transform $transition-spring;
+
+  &:hover {
+    color: $accent;
+    border-color: $border-accent;
+    background: rgba(124, 111, 255, 0.08);
+    transform: translateY(-3px);
+  }
+}
+
+@keyframes shimmer-line {
+  0%   { top: -100%; }
+  100% { top: 200%; }
+}

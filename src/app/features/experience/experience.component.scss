@@ -1,0 +1,206 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.experience {
+  background: $bg-primary;
+}
+
+// Timeline layout
+.timeline {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  gap: 0;
+}
+
+.timeline-item {
+  display: grid;
+  grid-template-columns: 32px 1fr;
+  gap: 1.25rem;
+  position: relative;
+  padding-bottom: 1.5rem;
+
+  &:last-child {
+    padding-bottom: 0;
+    .timeline-line { &::after { display: none; } }
+  }
+}
+
+.timeline-line {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 1.5rem;
+
+  &::after {
+    content: '';
+    flex: 1;
+    width: 1px;
+    background: linear-gradient($border, transparent);
+    margin-top: 8px;
+  }
+}
+
+.timeline-dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  background: $text-muted;
+  border: 2px solid $bg-primary;
+  box-shadow: 0 0 0 3px $bg-primary;
+  flex-shrink: 0;
+  transition: background $transition-base, box-shadow $transition-base;
+
+  &.current {
+    background: $accent;
+    box-shadow: 0 0 0 3px $bg-primary, 0 0 12px $accent-glow;
+  }
+}
+
+// Experience Card
+.exp-card {
+  background: $bg-card;
+  border: 1px solid $border;
+  border-radius: $radius-md;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: border-color $transition-base, box-shadow $transition-base;
+
+  &:hover {
+    border-color: $border-accent;
+    box-shadow: $shadow-glow;
+  }
+
+  &__header {
+    @include flex-between;
+    gap: 1rem;
+    align-items: flex-start;
+  }
+
+  &__body {
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.4s ease, opacity 0.3s ease, padding 0.3s ease;
+    opacity: 0;
+    padding-top: 0;
+
+    &.visible {
+      max-height: 600px;
+      opacity: 1;
+      padding-top: 1.25rem;
+    }
+  }
+}
+
+.exp-meta {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 0.3rem;
+}
+
+.exp-title-row {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  flex-wrap: wrap;
+}
+
+.exp-role {
+  font-size: $fs-lg;
+  font-weight: 700;
+  color: $text-primary;
+}
+
+.current-badge {
+  font-size: $fs-xs;
+  font-family: $font-mono;
+  color: $accent-cyan;
+  background: rgba(0, 212, 255, 0.1);
+  border: 1px solid rgba(0, 212, 255, 0.2);
+  padding: 0.15rem 0.55rem;
+  border-radius: $radius-full;
+}
+
+.exp-company-row {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.exp-company {
+  font-size: $fs-base;
+  font-weight: 600;
+  color: $accent;
+}
+
+.exp-sep {
+  color: $text-muted;
+}
+
+.exp-location {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  font-size: $fs-sm;
+  color: $text-secondary;
+
+  svg { color: $text-muted; }
+}
+
+.exp-period {
+  font-size: $fs-xs;
+  font-family: $font-mono;
+  color: $text-muted;
+}
+
+.exp-toggle {
+  background: none;
+  border: 1px solid $border;
+  border-radius: $radius-sm;
+  color: $text-muted;
+  width: 32px;
+  height: 32px;
+  @include flex-center;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: color $transition-fast, border-color $transition-fast, transform $transition-spring;
+
+  &.open {
+    color: $accent;
+    border-color: $border-accent;
+    transform: rotate(180deg);
+  }
+}
+
+.exp-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  margin-bottom: 1.25rem;
+
+  li {
+    position: relative;
+    padding-left: 1.25rem;
+    font-size: $fs-sm;
+    color: $text-secondary;
+    line-height: 1.7;
+
+    &::before {
+      content: '▸';
+      position: absolute;
+      left: 0;
+      color: $accent;
+      font-size: 0.75em;
+      top: 0.2em;
+    }
+  }
+}
+
+.exp-tags {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}

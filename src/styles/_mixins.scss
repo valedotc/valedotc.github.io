@@ -1,0 +1,122 @@
+@use 'variables' as *;
+
+@mixin container {
+  width: 100%;
+  max-width: $container-max;
+  margin: 0 auto;
+  padding: 0 $container-pad;
+}
+
+@mixin section {
+  padding: $section-padding;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin card {
+  background: $bg-card;
+  border: 1px solid $border;
+  border-radius: $radius-md;
+  transition: border-color $transition-base, box-shadow $transition-base, transform $transition-base;
+
+  &:hover {
+    border-color: $border-accent;
+    box-shadow: $shadow-card, $shadow-glow;
+    transform: translateY(-2px);
+  }
+}
+
+@mixin gradient-text {
+  background: linear-gradient(135deg, $accent 0%, $accent-cyan 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+@mixin glow-border {
+  border: 1px solid $border-accent;
+  box-shadow: 0 0 20px $accent-glow, inset 0 0 20px rgba(124, 111, 255, 0.05);
+}
+
+@mixin btn-primary {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  background: linear-gradient(135deg, $accent, #5a52e0);
+  color: white;
+  border: none;
+  border-radius: $radius-full;
+  font-size: $fs-sm;
+  font-weight: 600;
+  font-family: $font-sans;
+  cursor: pointer;
+  text-decoration: none;
+  transition: transform $transition-spring, box-shadow $transition-base;
+  box-shadow: 0 4px 20px $accent-glow;
+
+  &:hover {
+    transform: translateY(-2px) scale(1.02);
+    box-shadow: 0 8px 30px $accent-glow;
+  }
+
+  &:active {
+    transform: translateY(0) scale(0.98);
+  }
+}
+
+@mixin btn-ghost {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.75rem 1.75rem;
+  background: transparent;
+  color: $accent;
+  border: 1px solid $border-accent;
+  border-radius: $radius-full;
+  font-size: $fs-sm;
+  font-weight: 600;
+  font-family: $font-sans;
+  cursor: pointer;
+  text-decoration: none;
+  transition: background $transition-base, color $transition-base, transform $transition-spring;
+
+  &:hover {
+    background: rgba(124, 111, 255, 0.1);
+    transform: translateY(-2px);
+  }
+}
+
+@mixin tag {
+  display: inline-flex;
+  align-items: center;
+  padding: 0.25rem 0.75rem;
+  background: rgba(124, 111, 255, 0.12);
+  color: $accent;
+  border: 1px solid rgba(124, 111, 255, 0.25);
+  border-radius: $radius-full;
+  font-size: $fs-xs;
+  font-weight: 500;
+  font-family: $font-mono;
+  white-space: nowrap;
+}
+
+@mixin respond-to($breakpoint) {
+  @if $breakpoint == 'sm' {
+    @media (max-width: 640px) { @content; }
+  } @else if $breakpoint == 'md' {
+    @media (max-width: 768px) { @content; }
+  } @else if $breakpoint == 'lg' {
+    @media (max-width: 1024px) { @content; }
+  }
+}

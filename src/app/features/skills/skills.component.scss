@@ -1,0 +1,150 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.skills {
+  background: $bg-secondary;
+
+  &__grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1.5rem;
+    margin-bottom: 2rem;
+
+    @include respond-to('md') {
+      grid-template-columns: 1fr;
+    }
+  }
+}
+
+.skill-card {
+  @include card;
+  padding: 1.75rem;
+
+  &__header {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin-bottom: 1.5rem;
+
+    h3 {
+      font-size: $fs-base;
+      font-weight: 700;
+      color: $text-primary;
+    }
+  }
+}
+
+.skill-icon {
+  width: 40px;
+  height: 40px;
+  @include flex-center;
+  background: rgba(124, 111, 255, 0.1);
+  border: 1px solid rgba(124, 111, 255, 0.2);
+  border-radius: $radius-sm;
+  color: $accent;
+  flex-shrink: 0;
+}
+
+.skill-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+.skill-item {
+  &__top {
+    @include flex-between;
+    margin-bottom: 0.375rem;
+  }
+}
+
+.skill-name {
+  font-size: $fs-sm;
+  font-weight: 500;
+  color: $text-primary;
+  font-family: $font-mono;
+}
+
+.skill-pct {
+  font-size: $fs-xs;
+  color: $accent;
+  font-family: $font-mono;
+}
+
+.skill-bar {
+  height: 4px;
+  background: rgba(255, 255, 255, 0.06);
+  border-radius: $radius-full;
+  overflow: hidden;
+
+  &__fill {
+    height: 100%;
+    background: linear-gradient(90deg, $accent, $accent-cyan);
+    border-radius: $radius-full;
+    transform-origin: left;
+    animation: grow-bar 1s ease both;
+    animation-delay: 0.2s;
+  }
+}
+
+@keyframes grow-bar {
+  from { transform: scaleX(0); }
+  to   { transform: scaleX(1); }
+}
+
+// Languages
+.languages {
+  margin-top: 1rem;
+  padding: 1.75rem;
+  background: $bg-card;
+  border: 1px solid $border;
+  border-radius: $radius-md;
+
+  &__title {
+    font-size: $fs-base;
+    font-weight: 700;
+    color: $text-primary;
+    margin-bottom: 1.25rem;
+  }
+
+  &__list {
+    display: flex;
+    gap: 1.5rem;
+    flex-wrap: wrap;
+  }
+}
+
+.lang-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+  padding: 0.75rem 1.25rem;
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid $border;
+  border-radius: $radius-md;
+  transition: border-color $transition-base;
+
+  &:hover { border-color: $border-accent; }
+}
+
+.lang-flag {
+  font-size: 1.75rem;
+  line-height: 1;
+}
+
+.lang-info {
+  display: flex;
+  flex-direction: column;
+
+  .lang-name {
+    font-size: $fs-base;
+    font-weight: 600;
+    color: $text-primary;
+  }
+
+  .lang-level {
+    font-size: $fs-xs;
+    color: $text-muted;
+    font-family: $font-mono;
+  }
+}

@@ -1,0 +1,90 @@
+@use 'styles/variables' as *;
+@use 'styles/mixins' as *;
+@use 'styles/animations';
+
+// ─── Google Fonts ─────────────────────────────────────────────────────────────
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500&display=swap');
+
+// ─── Reset & Base ─────────────────────────────────────────────────────────────
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  font-size: 16px;
+}
+
+body {
+  background-color: $bg-primary;
+  color: $text-primary;
+  font-family: $font-sans;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+::-webkit-scrollbar { width: 6px; }
+::-webkit-scrollbar-track { background: $bg-primary; }
+::-webkit-scrollbar-thumb {
+  background: rgba(124, 111, 255, 0.4);
+  border-radius: $radius-full;
+  &:hover { background: $accent; }
+}
+
+::selection {
+  background: rgba(124, 111, 255, 0.35);
+  color: $text-primary;
+}
+
+a { color: inherit; text-decoration: none; }
+img { max-width: 100%; display: block; }
+
+// ─── Utilities ────────────────────────────────────────────────────────────────
+.container { @include container; }
+.section    { @include section; }
+.gradient-text { @include gradient-text; }
+.tag        { @include tag; }
+.btn-primary { @include btn-primary; }
+.btn-ghost   { @include btn-ghost; }
+
+.section-header {
+  margin-bottom: 3rem;
+
+  .section-label {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    font-family: $font-mono;
+    font-size: $fs-sm;
+    color: $accent;
+    margin-bottom: 0.75rem;
+    letter-spacing: 0.05em;
+    text-transform: uppercase;
+
+    &::before {
+      content: '';
+      display: block;
+      width: 24px;
+      height: 1px;
+      background: $accent;
+    }
+  }
+
+  h2 {
+    font-size: clamp($fs-3xl, 4vw, $fs-4xl);
+    font-weight: 800;
+    color: $text-primary;
+    line-height: 1.2;
+  }
+
+  .section-desc {
+    margin-top: 0.75rem;
+    font-size: $fs-lg;
+    color: $text-secondary;
+    max-width: 540px;
+  }
+}

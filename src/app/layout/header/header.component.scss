@@ -1,0 +1,146 @@
+@use '../../../styles/variables' as *;
+@use '../../../styles/mixins' as *;
+
+.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  z-index: 100;
+  padding: 1.25rem 0;
+  transition: background $transition-base, padding $transition-base, box-shadow $transition-base;
+
+  &.scrolled {
+    background: rgba(8, 8, 18, 0.85);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    padding: 0.875rem 0;
+    box-shadow: 0 1px 0 $border;
+  }
+
+  &__inner {
+    @include flex-between;
+  }
+
+  &__logo {
+    font-family: $font-mono;
+    font-size: $fs-xl;
+    font-weight: 600;
+    letter-spacing: -0.02em;
+    user-select: none;
+
+    .logo-bracket {
+      color: $accent;
+    }
+    .logo-name {
+      color: $text-primary;
+      margin: 0 0.1em;
+    }
+  }
+
+  &__nav {
+    display: flex;
+    align-items: center;
+    gap: 0.25rem;
+
+    @include respond-to('md') {
+      position: fixed;
+      top: 0;
+      right: -280px;
+      bottom: 0;
+      width: 260px;
+      background: $bg-card;
+      border-left: 1px solid $border;
+      flex-direction: column;
+      align-items: flex-start;
+      padding: 5rem 2rem 2rem;
+      gap: 0.5rem;
+      transition: right $transition-base;
+      z-index: 101;
+
+      &.open { right: 0; }
+
+      .nav-cta { margin-top: 1rem; width: 100%; justify-content: center; }
+    }
+  }
+
+  &__burger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 4px;
+    z-index: 102;
+
+    @include respond-to('md') { display: flex; }
+
+    span {
+      display: block;
+      width: 24px;
+      height: 2px;
+      background: $text-primary;
+      border-radius: 2px;
+      transition: transform $transition-base, opacity $transition-base;
+    }
+
+    &.open span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+    &.open span:nth-child(2) { opacity: 0; transform: scaleX(0); }
+    &.open span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+  }
+}
+
+.nav-link {
+  position: relative;
+  background: none;
+  border: none;
+  color: $text-secondary;
+  font-size: $fs-sm;
+  font-weight: 500;
+  font-family: $font-sans;
+  padding: 0.5rem 0.875rem;
+  cursor: pointer;
+  border-radius: $radius-sm;
+  transition: color $transition-fast, background $transition-fast;
+
+  &::after {
+    content: '';
+    position: absolute;
+    bottom: 4px;
+    left: 50%;
+    transform: translateX(-50%) scaleX(0);
+    width: 20px;
+    height: 1px;
+    background: $accent;
+    border-radius: 1px;
+    transition: transform $transition-base;
+  }
+
+  &:hover {
+    color: $text-primary;
+    background: rgba(255, 255, 255, 0.04);
+  }
+
+  &.active {
+    color: $text-primary;
+    &::after { transform: translateX(-50%) scaleX(1); }
+  }
+}
+
+.nav-cta {
+  @include btn-primary;
+  font-size: $fs-xs;
+  padding: 0.5rem 1.25rem;
+  margin-left: 0.75rem;
+
+  @include respond-to('md') { margin-left: 0; }
+}
+
+.menu-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(0, 0, 0, 0.6);
+  z-index: 100;
+  backdrop-filter: blur(4px);
+}

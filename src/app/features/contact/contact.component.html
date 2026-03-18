@@ -1,0 +1,135 @@
+<section id="contact" class="section contact">
+  <div class="container">
+
+    <div class="section-header" appScrollReveal>
+      <p class="section-label">Get in touch</p>
+      <h2>Contact</h2>
+      <p class="section-desc">Have a project in mind or want to connect? I'd love to hear from you.</p>
+    </div>
+
+    <div class="contact__grid">
+
+      <!-- Left: info -->
+      <div class="contact__info" appScrollReveal revealClass="reveal-left">
+
+        <div class="contact-links">
+          <a href="mailto:valerio.cancemi04@gmail.com" class="contact-link">
+            <div class="contact-link__icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+                <polyline points="22,6 12,13 2,6"/>
+              </svg>
+            </div>
+            <div class="contact-link__body">
+              <span class="contact-link__label">Email</span>
+              <span class="contact-link__value">valerio.cancemi04&#64;gmail.com</span>
+            </div>
+          </a>
+
+          <a href="https://github.com/valedotc" target="_blank" rel="noopener noreferrer" class="contact-link">
+            <div class="contact-link__icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M9 19c-5 1.5-5-2.5-7-3m14 6v-3.87a3.37 3.37 0 0 0-.94-2.61c3.14-.35 6.44-1.54 6.44-7A5.44 5.44 0 0 0 20 4.77 5.07 5.07 0 0 0 19.91 1S18.73.65 16 2.48a13.38 13.38 0 0 0-7 0C6.27.65 5.09 1 5.09 1A5.07 5.07 0 0 0 5 4.77a5.44 5.44 0 0 0-1.5 3.78c0 5.42 3.3 6.61 6.44 7A3.37 3.37 0 0 0 9 18.13V22"/>
+              </svg>
+            </div>
+            <div class="contact-link__body">
+              <span class="contact-link__label">GitHub</span>
+              <span class="contact-link__value">github.com/valedotc</span>
+            </div>
+          </a>
+
+          <a href="https://www.linkedin.com/in/valeriocancemi/" target="_blank" rel="noopener noreferrer" class="contact-link">
+            <div class="contact-link__icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M16 8a6 6 0 0 1 6 6v7h-4v-7a2 2 0 0 0-2-2 2 2 0 0 0-2 2v7h-4v-7a6 6 0 0 1 6-6z"/>
+                <rect x="2" y="9" width="4" height="12"/>
+                <circle cx="4" cy="4" r="2"/>
+              </svg>
+            </div>
+            <div class="contact-link__body">
+              <span class="contact-link__label">LinkedIn</span>
+              <span class="contact-link__value">valeriocancemi</span>
+            </div>
+          </a>
+
+          <div class="contact-link no-link">
+            <div class="contact-link__icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+            </div>
+            <div class="contact-link__body">
+              <span class="contact-link__label">Location</span>
+              <span class="contact-link__value">Trento, Italy</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Right: form -->
+      <div class="contact__form-wrap" appScrollReveal revealClass="reveal-right">
+
+        @if (submitted()) {
+          <div class="form-success">
+            <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"/>
+            </svg>
+            <span>Mail client opened! I'll get back to you soon.</span>
+          </div>
+        }
+
+        <form class="contact-form" (ngSubmit)="submit()" #f="ngForm">
+
+          <div class="form-row">
+            <div class="form-group">
+              <label for="name">Name</label>
+              <input
+                id="name"
+                type="text"
+                name="name"
+                [(ngModel)]="form.name"
+                placeholder="Your name"
+                required
+                autocomplete="off"/>
+            </div>
+            <div class="form-group">
+              <label for="email">Email</label>
+              <input
+                id="email"
+                type="email"
+                name="email"
+                [(ngModel)]="form.email"
+                placeholder="you@example.com"
+                required
+                autocomplete="off"/>
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea
+              id="message"
+              name="message"
+              [(ngModel)]="form.message"
+              placeholder="Tell me about your project..."
+              rows="5"
+              required></textarea>
+          </div>
+
+          <button type="submit" class="btn-primary form-submit" [disabled]="!f.valid">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <line x1="22" y1="2" x2="11" y2="13"/>
+              <polygon points="22 2 15 22 11 13 2 9 22 2"/>
+            </svg>
+            Send Message
+          </button>
+
+        </form>
+      </div>
+
+    </div>
+
+  </div>
+</section>

@@ -1,0 +1,76 @@
+<section id="experience" class="section experience">
+  <div class="container">
+
+    <div class="section-header" appScrollReveal>
+      <p class="section-label">What I've done</p>
+      <h2>Experience</h2>
+      <p class="section-desc">A timeline of my professional journey — from embedded firmware to web and security research.</p>
+    </div>
+
+    <div class="timeline">
+      @for (exp of data.experiences; track exp.company; let i = $index) {
+        <div
+          class="timeline-item"
+          [class.expanded]="expanded() === i"
+          appScrollReveal
+          [revealDelay]="i * 100">
+
+          <!-- Timeline line & dot -->
+          <div class="timeline-line">
+            <div class="timeline-dot" [class.current]="exp.current"></div>
+          </div>
+
+          <!-- Card -->
+          <div class="exp-card" (click)="toggle(i)">
+            <div class="exp-card__header">
+
+              <div class="exp-meta">
+                <div class="exp-title-row">
+                  <h3 class="exp-role">{{ exp.role }}</h3>
+                  @if (exp.current) {
+                    <span class="current-badge">Current</span>
+                  }
+                </div>
+                <div class="exp-company-row">
+                  <span class="exp-company">{{ exp.company }}</span>
+                  <span class="exp-sep">·</span>
+                  <span class="exp-location">
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                      <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                      <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                    {{ exp.location }}
+                  </span>
+                </div>
+                <span class="exp-period">{{ exp.period }}</span>
+              </div>
+
+              <button class="exp-toggle" [class.open]="expanded() === i" aria-label="Toggle details">
+                <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                  <polyline points="6 9 12 15 18 9"/>
+                </svg>
+              </button>
+            </div>
+
+            <!-- Expandable content -->
+            <div class="exp-card__body" [class.visible]="expanded() === i">
+              <ul class="exp-list">
+                @for (item of exp.description; track item) {
+                  <li>{{ item }}</li>
+                }
+              </ul>
+
+              <div class="exp-tags">
+                @for (tag of exp.tags; track tag) {
+                  <span class="tag">{{ tag }}</span>
+                }
+              </div>
+            </div>
+          </div>
+
+        </div>
+      }
+    </div>
+
+  </div>
+</section>

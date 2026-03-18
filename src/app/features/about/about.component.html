@@ -1,0 +1,108 @@
+<section id="about" class="section about">
+  <div class="container">
+
+    <div class="section-header" appScrollReveal>
+      <p class="section-label">Who I am</p>
+      <h2>About Me</h2>
+    </div>
+
+    <div class="about__grid">
+
+      <div class="about__text" appScrollReveal revealClass="reveal-left">
+        <p>
+          I'm a <strong>Computer Engineering student</strong> at the University of Trento
+          with a passion for the full spectrum of software — from bare-metal embedded systems
+          to web applications and cybersecurity research.
+        </p>
+        <p>
+          Currently working as a <strong>Cybersecurity Researcher</strong> at
+          <strong>Fondazione Bruno Kessler (FBK)</strong>, where I focus on
+          WebAssembly memory attack fingerprinting and real-time malware detection
+          using the Chrome DevTools Protocol.
+        </p>
+        <p>
+          Beyond security, I develop firmware for STM32 microcontrollers as an
+          <strong>Embedded Developer</strong> at E-Agle Trento Racing Team — an
+          electric Formula SAE car project.
+        </p>
+
+        <div class="about__info">
+          <div class="info-item">
+            <span class="info-label">Location</span>
+            <span class="info-value">
+              <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/>
+                <circle cx="12" cy="10" r="3"/>
+              </svg>
+              {{ data.location }}
+            </span>
+          </div>
+          <div class="info-item">
+            <span class="info-label">Email</span>
+            <a [href]="'mailto:' + data.email" class="info-value info-link">{{ data.email }}</a>
+          </div>
+          @for (lang of data.languages; track lang.name) {
+            <div class="info-item">
+              <span class="info-label">{{ lang.flag }} {{ lang.name }}</span>
+              <span class="info-value">{{ lang.level }}</span>
+            </div>
+          }
+        </div>
+
+        <a href="mailto:valerio.cancemi04@gmail.com" class="btn-primary about__cta">
+          <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/>
+            <polyline points="22,6 12,13 2,6"/>
+          </svg>
+          Say Hello
+        </a>
+      </div>
+
+      <div class="about__side" appScrollReveal revealClass="reveal-right">
+
+        <!-- Education card -->
+        <div class="edu-card">
+          <div class="edu-card__header">
+            <div class="edu-icon">
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/>
+                <path d="M6 12v5c3 3 9 3 12 0v-5"/>
+              </svg>
+            </div>
+            <span class="edu-badge">Current</span>
+          </div>
+          @for (edu of data.education; track edu.institution) {
+            <div class="edu-info">
+              <h3>{{ edu.institution }}</h3>
+              <p>{{ edu.degree }}</p>
+              <p class="edu-track">Track: {{ edu.track }}</p>
+              <span class="edu-period">{{ edu.period }}</span>
+            </div>
+          }
+        </div>
+
+        <!-- Stats -->
+        <div class="about__stats">
+          <div class="stat-card" appScrollReveal [revealDelay]="100">
+            <span class="stat-number">4+</span>
+            <span class="stat-label">Years coding</span>
+          </div>
+          <div class="stat-card" appScrollReveal [revealDelay]="200">
+            <span class="stat-number">4</span>
+            <span class="stat-label">Roles held</span>
+          </div>
+          <div class="stat-card" appScrollReveal [revealDelay]="300">
+            <span class="stat-number">2</span>
+            <span class="stat-label">Active roles</span>
+          </div>
+          <div class="stat-card" appScrollReveal [revealDelay]="400">
+            <span class="stat-number">∞</span>
+            <span class="stat-label">Curiosity</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</section>

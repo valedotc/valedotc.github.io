@@ -1,0 +1,37 @@
+<header class="header" [class.scrolled]="scrolled()">
+  <div class="container header__inner">
+
+    <a class="header__logo" (click)="scrollTo('hero')" style="cursor:pointer">
+      <span class="logo-bracket">&lt;</span>
+      <span class="logo-name">VC</span>
+      <span class="logo-bracket">/&gt;</span>
+    </a>
+
+    <nav class="header__nav" [class.open]="menuOpen()">
+      @for (item of data.navItems; track item.fragment) {
+        <button
+          class="nav-link"
+          [class.active]="activeSection() === item.fragment"
+          (click)="scrollTo(item.fragment)">
+          {{ item.label }}
+        </button>
+      }
+      <a
+        href="mailto:valerio.cancemi04@gmail.com"
+        class="btn-primary nav-cta">
+        Hire me
+      </a>
+    </nav>
+
+    <button class="header__burger" (click)="toggleMenu()" [class.open]="menuOpen()" aria-label="Toggle menu">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
+
+  </div>
+</header>
+
+@if (menuOpen()) {
+  <div class="menu-backdrop" (click)="toggleMenu()"></div>
+}
