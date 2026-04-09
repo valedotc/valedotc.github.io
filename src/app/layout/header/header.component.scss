@@ -8,10 +8,10 @@
   right: 0;
   z-index: 100;
   padding: 1.25rem 0;
-  transition: background $transition-base, padding $transition-base, box-shadow $transition-base;
+  transition: background $transition-base, padding $transition-base, box-shadow $transition-base, border-color $transition-base;
 
   &.scrolled {
-    background: rgba(8, 8, 18, 0.85);
+    background: rgba(13, 11, 9, 0.88);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
     padding: 0.875rem 0;
@@ -25,8 +25,8 @@
   &__logo {
     font-family: $font-mono;
     font-size: $fs-xl;
-    font-weight: 600;
-    letter-spacing: -0.02em;
+    font-weight: 700;
+    letter-spacing: -0.01em;
     user-select: none;
 
     .logo-bracket {
@@ -78,10 +78,10 @@
 
     span {
       display: block;
-      width: 24px;
+      width: 22px;
       height: 2px;
       background: $text-primary;
-      border-radius: 2px;
+      border-radius: 0;
       transition: transform $transition-base, opacity $transition-base;
     }
 
@@ -96,9 +96,11 @@
   background: none;
   border: none;
   color: $text-secondary;
-  font-size: $fs-sm;
+  font-size: $fs-xs;
   font-weight: 500;
-  font-family: $font-sans;
+  font-family: $font-mono;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   padding: 0.5rem 0.875rem;
   cursor: pointer;
   border-radius: $radius-sm;
@@ -110,20 +112,19 @@
     bottom: 4px;
     left: 50%;
     transform: translateX(-50%) scaleX(0);
-    width: 20px;
+    width: 16px;
     height: 1px;
     background: $accent;
-    border-radius: 1px;
     transition: transform $transition-base;
   }
 
   &:hover {
     color: $text-primary;
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(196, 151, 62, 0.05);
   }
 
   &.active {
-    color: $text-primary;
+    color: $accent;
     &::after { transform: translateX(-50%) scaleX(1); }
   }
 }
@@ -131,7 +132,7 @@
 .nav-cta {
   @include btn-primary;
   font-size: $fs-xs;
-  padding: 0.5rem 1.25rem;
+  padding: 0.45rem 1.1rem;
   margin-left: 0.75rem;
 
   @include respond-to('md') { margin-left: 0; }
@@ -140,7 +141,7 @@
 .menu-backdrop {
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.6);
+  background: rgba(0, 0, 0, 0.7);
   z-index: 100;
   backdrop-filter: blur(4px);
 }

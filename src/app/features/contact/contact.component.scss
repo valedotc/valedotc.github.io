@@ -32,33 +32,36 @@
   display: flex;
   align-items: center;
   gap: 1rem;
-  padding: 1.25rem;
+  padding: 1.125rem 1.25rem;
   background: $bg-card;
   border: 1px solid $border;
   border-radius: $radius-md;
-  transition: border-color $transition-base, transform $transition-spring;
+  border-left: 2px solid transparent;
+  transition: border-left-color $transition-base, border-color $transition-base, transform $transition-spring;
   text-decoration: none;
 
   &:not(.no-link):hover {
-    border-color: $border-accent;
+    border-left-color: $accent;
+    border-color: $border;
     transform: translateX(4px);
 
     .contact-link__icon {
-      background: rgba(124, 111, 255, 0.2);
+      background: rgba(196, 151, 62, 0.15);
       color: $accent;
+      border-color: rgba(196, 151, 62, 0.3);
     }
   }
 
   &__icon {
-    width: 44px;
-    height: 44px;
+    width: 42px;
+    height: 42px;
     @include flex-center;
-    background: rgba(255, 255, 255, 0.04);
+    background: rgba(196, 151, 62, 0.06);
     border: 1px solid $border;
-    border-radius: $radius-md;
+    border-radius: $radius-sm;
     color: $text-secondary;
     flex-shrink: 0;
-    transition: background $transition-base, color $transition-base;
+    transition: background $transition-base, color $transition-base, border-color $transition-base;
   }
 
   &__body {
@@ -72,7 +75,7 @@
     color: $text-muted;
     font-family: $font-mono;
     text-transform: uppercase;
-    letter-spacing: 0.05em;
+    letter-spacing: 0.08em;
   }
 
   &__value {
@@ -103,29 +106,36 @@
   gap: 0.5rem;
 
   label {
-    font-size: $fs-sm;
+    font-size: $fs-xs;
     font-weight: 500;
-    color: $text-secondary;
+    font-family: $font-mono;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: $text-muted;
   }
 
   input,
   textarea {
     background: $bg-card;
     border: 1px solid $border;
-    border-radius: $radius-md;
+    border-radius: $radius-sm;
     padding: 0.875rem 1rem;
     color: $text-primary;
     font-size: $fs-sm;
     font-family: $font-sans;
+    font-weight: 400;
     outline: none;
     transition: border-color $transition-fast, box-shadow $transition-fast;
     resize: none;
 
-    &::placeholder { color: $text-muted; }
+    &::placeholder {
+      color: $text-muted;
+      font-weight: 300;
+    }
 
     &:focus {
       border-color: $border-accent;
-      box-shadow: 0 0 0 3px rgba(124, 111, 255, 0.12);
+      box-shadow: 0 0 0 3px rgba(196, 151, 62, 0.1);
     }
   }
 }
@@ -134,7 +144,7 @@
   align-self: flex-start;
 
   &:disabled {
-    opacity: 0.5;
+    opacity: 0.4;
     cursor: not-allowed;
     transform: none !important;
   }
@@ -145,12 +155,14 @@
   align-items: center;
   gap: 0.75rem;
   padding: 1rem 1.25rem;
-  background: rgba(0, 212, 255, 0.08);
-  border: 1px solid rgba(0, 212, 255, 0.2);
-  border-radius: $radius-md;
-  color: $accent-cyan;
+  background: rgba(196, 151, 62, 0.08);
+  border: 1px solid rgba(196, 151, 62, 0.25);
+  border-radius: $radius-sm;
+  border-left: 2px solid $accent;
+  color: $accent;
   font-size: $fs-sm;
   font-weight: 500;
+  font-family: $font-mono;
   margin-bottom: 1.25rem;
   animation: fadeInUp 0.4s ease;
 }

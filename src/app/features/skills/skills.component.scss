@@ -19,6 +19,12 @@
 .skill-card {
   @include card;
   padding: 1.75rem;
+  border-left: 2px solid transparent;
+  transition: border-left-color $transition-base, border-color $transition-base, box-shadow $transition-base, transform $transition-base;
+
+  &:hover {
+    border-left-color: $accent;
+  }
 
   &__header {
     display: flex;
@@ -28,18 +34,19 @@
 
     h3 {
       font-size: $fs-base;
-      font-weight: 700;
+      font-weight: 600;
       color: $text-primary;
+      letter-spacing: 0.02em;
     }
   }
 }
 
 .skill-icon {
-  width: 40px;
-  height: 40px;
+  width: 38px;
+  height: 38px;
   @include flex-center;
-  background: rgba(124, 111, 255, 0.1);
-  border: 1px solid rgba(124, 111, 255, 0.2);
+  background: rgba(196, 151, 62, 0.08);
+  border: 1px solid rgba(196, 151, 62, 0.2);
   border-radius: $radius-sm;
   color: $accent;
   flex-shrink: 0;
@@ -54,35 +61,37 @@
 .skill-item {
   &__top {
     @include flex-between;
-    margin-bottom: 0.375rem;
+    margin-bottom: 0.4rem;
   }
 }
 
 .skill-name {
   font-size: $fs-sm;
-  font-weight: 500;
+  font-weight: 400;
   color: $text-primary;
   font-family: $font-mono;
+  letter-spacing: 0.02em;
 }
 
 .skill-pct {
   font-size: $fs-xs;
   color: $accent;
   font-family: $font-mono;
+  letter-spacing: 0.04em;
 }
 
 .skill-bar {
-  height: 4px;
-  background: rgba(255, 255, 255, 0.06);
-  border-radius: $radius-full;
+  height: 3px;
+  background: rgba(196, 151, 62, 0.08);
+  border-radius: 0;
   overflow: hidden;
 
   &__fill {
     height: 100%;
     background: linear-gradient(90deg, $accent, $accent-cyan);
-    border-radius: $radius-full;
+    border-radius: 0;
     transform-origin: left;
-    animation: grow-bar 1s ease both;
+    animation: grow-bar 1.1s ease both;
     animation-delay: 0.2s;
   }
 }
@@ -99,17 +108,22 @@
   background: $bg-card;
   border: 1px solid $border;
   border-radius: $radius-md;
+  border-left: 2px solid rgba(196, 151, 62, 0.35);
 
   &__title {
-    font-size: $fs-base;
-    font-weight: 700;
+    font-size: $fs-sm;
+    font-weight: 600;
     color: $text-primary;
     margin-bottom: 1.25rem;
+    font-family: $font-mono;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: $accent;
   }
 
   &__list {
     display: flex;
-    gap: 1.5rem;
+    gap: 1.25rem;
     flex-wrap: wrap;
   }
 }
@@ -119,16 +133,16 @@
   align-items: center;
   gap: 0.75rem;
   padding: 0.75rem 1.25rem;
-  background: rgba(255, 255, 255, 0.03);
+  background: rgba(196, 151, 62, 0.04);
   border: 1px solid $border;
-  border-radius: $radius-md;
+  border-radius: $radius-sm;
   transition: border-color $transition-base;
 
   &:hover { border-color: $border-accent; }
 }
 
 .lang-flag {
-  font-size: 1.75rem;
+  font-size: 1.5rem;
   line-height: 1;
 }
 
@@ -137,7 +151,7 @@
   flex-direction: column;
 
   .lang-name {
-    font-size: $fs-base;
+    font-size: $fs-sm;
     font-weight: 600;
     color: $text-primary;
   }
@@ -146,5 +160,6 @@
     font-size: $fs-xs;
     color: $text-muted;
     font-family: $font-mono;
+    letter-spacing: 0.05em;
   }
 }
