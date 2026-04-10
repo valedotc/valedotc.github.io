@@ -1,4 +1,5 @@
-import { Component, inject, OnInit, OnDestroy, signal } from '@angular/core';
+import { Component, inject, OnInit, OnDestroy, signal, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { PortfolioDataService } from '../../core/services/portfolio-data.service';
 
 @Component({
@@ -10,8 +11,10 @@ import { PortfolioDataService } from '../../core/services/portfolio-data.service
 })
 export class HeroComponent implements OnInit, OnDestroy {
   data = inject(PortfolioDataService);
+  private platformId = inject(PLATFORM_ID);
 
-  displayedText = signal('');
+  // Initial value shown in prerendered HTML / before typing animation starts
+  displayedText = signal('Computer Engineering Student');
   private roles = [
     'Computer Engineering Student',
     'Cybersecurity Researcher',
@@ -24,7 +27,10 @@ export class HeroComponent implements OnInit, OnDestroy {
   private timer?: ReturnType<typeof setTimeout>;
 
   ngOnInit(): void {
-    this.type();
+    if (isPlatformBrowser(this.platformId)) {
+      this.displayedText.set('');
+      this.type();
+    }
   }
 
   ngOnDestroy(): void {
@@ -53,6 +59,8 @@ export class HeroComponent implements OnInit, OnDestroy {
   }
 
   scrollTo(fragment: string): void {
-    document.getElementById(fragment)?.scrollIntoView({ behavior: 'smooth' });
+    if (isPlatformBrowser(this.platformId)) {
+      document.getElementById(fragment)?.scrollIntoView({ behavior: 'smooth' });
+    }
   }
 }

@@ -1,4 +1,5 @@
-import { AfterViewInit, Directive, ElementRef, Input, OnDestroy } from '@angular/core';
+import { AfterViewInit, Directive, ElementRef, inject, Input, OnDestroy, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 
 @Directive({
   selector: '[appScrollReveal]',
@@ -9,10 +10,12 @@ export class ScrollRevealDirective implements AfterViewInit, OnDestroy {
   @Input() revealDelay = 0;
 
   private observer!: IntersectionObserver;
+  private platformId = inject(PLATFORM_ID);
 
   constructor(private el: ElementRef<HTMLElement>) {}
 
   ngAfterViewInit(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
     this.el.nativeElement.classList.add(this.revealClass);
     if (this.revealDelay) {
       this.el.nativeElement.style.transitionDelay = `${this.revealDelay}ms`;

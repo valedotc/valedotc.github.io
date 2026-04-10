@@ -1,4 +1,5 @@
-import { Component, HostListener, inject, OnInit, signal } from '@angular/core';
+import { Component, HostListener, inject, OnInit, signal, PLATFORM_ID } from '@angular/core';
+import { isPlatformBrowser } from '@angular/common';
 import { PortfolioDataService } from '../../core/services/portfolio-data.service';
 
 @Component({
@@ -10,6 +11,7 @@ import { PortfolioDataService } from '../../core/services/portfolio-data.service
 })
 export class HeaderComponent implements OnInit {
   data = inject(PortfolioDataService);
+  private platformId = inject(PLATFORM_ID);
 
   scrolled = signal(false);
   menuOpen = signal(false);
@@ -23,6 +25,7 @@ export class HeaderComponent implements OnInit {
 
   @HostListener('window:scroll')
   onScroll(): void {
+    if (!isPlatformBrowser(this.platformId)) return;
     this.scrolled.set(window.scrollY > 50);
     this.updateActiveSection();
   }
@@ -39,6 +42,7 @@ export class HeaderComponent implements OnInit {
   }
 
   scrollTo(fragment: string): void {
+    if (!isPlatformBrowser(this.platformId)) return;
     this.menuOpen.set(false);
     document.getElementById(fragment)?.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
